@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 export class Detail extends Component {
   render() {
-    return <div>Detail</div>;
+    return <div>여기는 Detail</div>;
   }
 }
 
