@@ -55,6 +55,19 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+textarea{
+	resize: none;
+	outline: none;
+	font-family: inherit;
+}
+
+input{
+	outline: none;
+	font-family: inherit;
+}
+
+img{vertical-align:middle}
 `;
 
 export default GlobalStyle;
