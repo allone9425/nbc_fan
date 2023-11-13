@@ -2,6 +2,8 @@ import styled from "styled-components";
 import uuid from "react-uuid";
 import { useState } from "react";
 import cover from "../assets/cover.jpg";
+import List from "components/List";
+
 const KuromiColor = "#d8c6de";
 const MyMelodyColor = "#f4cad6";
 
@@ -179,6 +181,7 @@ const ToWho = styled.p`
   font-weight: bold;
   color: ${(props) => props.fontcolor || "#A1619D"};
 `;
+
 function Home() {
   const [letters, setLetters] = useState([
     {
@@ -267,6 +270,12 @@ function Home() {
     }
   };
 
+  //버튼 클릭할때마다 특정 화면만 보여주기
+  const [selectedMember, setSelectedMember] = useState("전체보기");
+  //const [MemberOne, SetMemberOne] = useState(true);
+
+  //const [MemberTwo, SetMemberTwo] = useState(false);
+  console.log(selectedMember);
   return (
     <div>
       <Header>
@@ -308,52 +317,59 @@ function Home() {
         </button>
       </FormBox>
       <MemberBox>
-        <li>전체보기</li>
-        <li>쿠로미</li>
-        <li>마이멜로디</li>
+        <li
+          onClick={function () {
+            setSelectedMember("전체보기");
+            console.log("전체클릭됨");
+          }}
+        >
+          전체보기
+        </li>
+        <li
+          onClick={function () {
+            setSelectedMember("쿠로미");
+          }}
+        >
+          쿠로미
+        </li>
+        <li
+          onClick={function () {
+            setSelectedMember("마이멜로디");
+          }}
+        >
+          마이멜로디
+        </li>
       </MemberBox>
       <MainList>
-        {letters
-          /*.filter(function (letter) {
-            return letter.writedTo === "쿠로미";
-          })*/
-          .map(function (item) {
-            const fontColor = item.writedTo == "쿠로미" ? "#A1619D" : "#E86F9A";
-            return (
-              <MainBox>
-                <ToWho fontcolor={fontColor}>To. {item.writedTo}</ToWho>
-                <section>
-                  <p>
-                    <img src={item.avatar} alt="사진" />
-                  </p>
-                  <div className="NameDate">
-                    <h3>{item.nickname}</h3>
+        <div>
+          {letters
+            .filter(function (letter) {
+              if ("전체보기" === selectedMember) {
+                return true;
+              }
 
-                    <p>{item.createdAt}</p>
-                  </div>
-                </section>
-
-                <div className="MainText">{item.content}</div>
-              </MainBox>
-            );
-          })}
-
-        {/* <MainBox>
-          <section>
-            <p>
-              <img src="https://placekitten.com/80/80" alt="사진"></img>
-            </p>
-            <div className="NameDate">
-              <h3>샛별</h3>
-              <p>2023-11-10 08:34</p>
-            </div>
-          </section>
-          <div className="MainText">
-            죽는 날까지 하늘을 우러러 한 점 부끄럼이 없기를, 잎새에 이는
-            바람에도 나는 괴로워했다. 별을 노래하는 마음으로 모든 죽어 가는 것을
-            사랑해야지 그리고 나한테 주어진 길을 걸어가야겠다.
-          </div>
-        </MainBox> */}
+              return letter.writedTo === selectedMember;
+            })
+            .map(function (item) {
+              const fontColor =
+                item.writedTo === "쿠로미" ? "#A1619D" : "#E86F9A";
+              return (
+                <MainBox key={item.id}>
+                  <ToWho fontcolor={fontColor}>To. {item.writedTo}</ToWho>
+                  <section>
+                    <p>
+                      <img src={item.avatar} alt="사진" />
+                    </p>
+                    <div className="NameDate">
+                      <h3>{item.nickname}</h3>
+                      <p>{item.createdAt}</p>
+                    </div>
+                  </section>
+                  <div className="MainText">{item.content}</div>
+                </MainBox>
+              );
+            })}
+        </div>
       </MainList>
     </div>
   );
