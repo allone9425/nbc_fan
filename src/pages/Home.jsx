@@ -2,7 +2,183 @@ import styled from "styled-components";
 import uuid from "react-uuid";
 import { useState } from "react";
 import cover from "../assets/cover.jpg";
+const KuromiColor = "#d8c6de";
+const MyMelodyColor = "#f4cad6";
 
+const Header = styled.header`
+  background: url(${cover});
+  background-size: cover;
+  background-position: center;
+  padding: 100px;
+  h2 {
+    font-size: 30px;
+    text-align: center;
+    margin: 30px 0;
+    font-weight: bold;
+  }
+`;
+
+const MemberBox = styled.ul`
+  display: flex;
+  justify-content: center;
+  margin-top: 70px;
+
+  li {
+    background-color: ${KuromiColor};
+    padding: 15px 10px;
+    border-radius: 5px;
+    border: 2px double #fff;
+    margin: 0 10px;
+    width: 100px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    &:last-child {
+      background-color: ${MyMelodyColor};
+    }
+    &:first-child {
+      background: linear-gradient(
+        90deg,
+        rgba(216, 198, 222, 1) 0%,
+        rgba(244, 202, 214, 1) 100%
+      );
+    }
+
+    &:hover {
+      background-color: #fffacd;
+    }
+  }
+`;
+
+const FormBox = styled.form`
+  max-width: 1200px;
+  min-width: 800px;
+  margin: auto;
+  margin-top: 50px;
+  background-color: ${KuromiColor};
+  border: 1px solid #aaa;
+  box-shadow: 3px 3px 5px #aaa;
+  font-size: 16px;
+  padding: 50px;
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  border-radius: 10px;
+  button {
+    border: none;
+    font-weight: 500;
+    padding: 20px 10px;
+    background-color: ${MyMelodyColor};
+    font-size: 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    &:hover {
+      background-color: #fffacd;
+    }
+  }
+`;
+
+const FormGroup = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  select {
+    padding: 10px 20px;
+    width: calc(100% - 156px);
+    border: none;
+    font-size: 20px;
+    outline: none;
+    font-weight: 500;
+    font-family: inherit;
+    -webkit-appearance: none; /* 화살표 없애기 for chrome*/
+    -moz-appearance: none; /* 화살표 없애기 for firefox*/
+    appearance: none; /* 화살표 없애기 공통*/
+    &::-ms-expand {
+      display: none; /*for IE10,11*/
+    }
+  }
+
+  label {
+    padding-right: 20px;
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  textarea {
+    padding: 10px;
+    width: calc(100% - 60px);
+    height: 66px;
+    border: none;
+    font-weight: 500;
+    &::placeholder {
+      color: #ccc;
+    }
+    font-size: 20px;
+  }
+
+  input {
+    font-weight: 500;
+    padding: 10px;
+    width: calc(100% - 60px);
+    border: none;
+    &::placeholder {
+      color: #ccc;
+    }
+    font-size: 20px;
+  }
+`;
+
+const MainList = styled.section`
+  /*background-color: beige;*/
+  margin: auto;
+  max-width: 1200px;
+  min-width: 800px;
+  padding: 40px 0;
+  font-size: 22px;
+  line-height: 2rem;
+`;
+
+const MainBox = styled.div`
+  border: 1px solid #aaa;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 3px 3px 5px #aaa;
+  margin: 30px 0;
+  position: relative;
+  img {
+    width: 80px;
+    height: 80px;
+  }
+  .MainText {
+    margin-top: 20px;
+    /* background-color: pink;*/
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    height: 30px;
+  }
+
+  section {
+    display: flex;
+
+    align-items: center;
+
+    /*background-color: skyblue;*/
+
+    .NameDate {
+      margin-left: 30px;
+      font-weight: bold;
+    }
+  }
+`;
+
+const ToWho = styled.p`
+  position: absolute;
+  right: 20px;
+  font-weight: bold;
+  color: ${(props) => props.fontcolor || "#A1619D"};
+`;
 function Home() {
   const [letters, setLetters] = useState([
     {
@@ -51,179 +227,46 @@ function Home() {
     },
   ]);
 
-  const [letterShow, SetLetterShow] = useState(true);
-  const [letterHide, SetLetterHide] = useState(false);
+  //추가하기
+  const [nickname, setNickname] = useState("");
+  const [content, setContent] = useState("");
 
-  // {letterShow === true ? (
-  //   <TodoList todos={todos} setTodos={setTodos} isDone={false} />
-  // ) : (
-  //   ""
-  // )}
-  // {letterHide === true ? (
-  //   <TodoList todos={todos} setTodos={setTodos} isDone={true} />
-  // ) : (
-  //   ""
-  // )}
+  const [member, setMember] = useState("쿠로미");
+  const plusMember = function (e) {
+    setMember(e.target.value);
+  };
 
-  const Header = styled.header`
-    background: url(${cover});
-    background-size: cover;
-    background-position: center;
-    padding: 100px;
-    h2 {
-      font-size: 30px;
-      text-align: center;
-      margin: 30px 0;
-      font-weight: bold;
+  const onSubmitHandler = (e) => {
+    //alert("연결확인");
+    e.preventDefault();
+    //추가하기 유효성 검사
+    //매개변수 nickname과 content를 받아서,
+    //두 값이 모두 존재하면 true를 반환하고,
+    //그렇지 않으면 false를 반환합니다.
+    const inputValid = (nickname, content) => {
+      return nickname && content;
+    };
+
+    //입력값이 유효한지 확인
+    if (inputValid(nickname, content)) {
+      const now = new Date();
+      const newLetters = {
+        createdAt: String(now),
+        nickname: nickname,
+        avatar: require("../assets/default.svg").default,
+        content: content,
+        writedTo: member,
+        id: uuid(),
+      };
+      setLetters([...letters, newLetters]);
+      setNickname("");
+      setContent("");
+      setMember("");
+    } else {
+      alert("이름과 내용은 필수 입력값입니다.");
     }
-  `;
+  };
 
-  const MemberBox = styled.ul`
-    display: flex;
-    justify-content: center;
-    margin-top: 70px;
-
-    li {
-      background-color: #d8c6de;
-      padding: 15px 10px;
-      border-radius: 5px;
-      border: 2px double #fff;
-      margin: 0 10px;
-      width: 100px;
-      font-weight: bold;
-      text-align: center;
-      cursor: pointer;
-      &:last-child {
-        background-color: #f4cad6;
-      }
-      &:first-child {
-        background: linear-gradient(
-          90deg,
-          rgba(216, 198, 222, 1) 0%,
-          rgba(244, 202, 214, 1) 100%
-        );
-      }
-
-      &:hover {
-        background-color: #eee;
-      }
-    }
-  `;
-
-  const FormBox = styled.form`
-    max-width: 1200px;
-    min-width: 800px;
-    margin: auto;
-    margin-top: 50px;
-    background-color: #d8c6de;
-    border: 1px solid #999;
-    box-shadow: 3px 3px 5px #aaa;
-    font-size: 16px;
-    padding: 50px;
-    display: flex;
-    gap: 20px;
-    flex-direction: column;
-    border-radius: 10px;
-    button {
-      border: none;
-      padding: 20px 10px;
-      background-color: #f4cad6;
-      font-size: 20px;
-      border-radius: 8px;
-    }
-  `;
-
-  const FormGroup = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    select {
-      padding: 10px 20px;
-      width: calc(100% - 177px);
-      border: none;
-      font-size: 20px;
-      outline: none;
-      -webkit-appearance: none; /* 화살표 없애기 for chrome*/
-      -moz-appearance: none; /* 화살표 없애기 for firefox*/
-      appearance: none; /* 화살표 없애기 공통*/
-      &::-ms-expand {
-        display: none; /*for IE10,11*/
-      }
-    }
-
-    label {
-      padding-right: 20px;
-      font-size: 20px;
-    }
-
-    textarea {
-      padding: 10px;
-      width: calc(100% - 60px);
-      height: 66px;
-      border: none;
-      &::placeholder {
-        color: #ccc;
-      }
-      font-size: 20px;
-    }
-
-    input {
-      padding: 10px;
-      width: calc(100% - 60px);
-      border: none;
-      &::placeholder {
-        color: #ccc;
-      }
-      font-size: 20px;
-    }
-  `;
-
-  const MainList = styled.section`
-    /*background-color: beige;*/
-    margin: auto;
-    max-width: 1200px;
-    min-width: 800px;
-    padding: 40px 0;
-    font-size: 22px;
-    line-height: 2rem;
-  `;
-
-  const MainBox = styled.div`
-    border: 1px solid #999;
-    padding: 20px;
-    border-radius: 20px;
-    box-shadow: 3px 3px 5px #aaa;
-    margin: 30px 0;
-
-    img {
-      width: 80px;
-      height: 80px;
-    }
-    .MainText {
-      margin-top: 20px;
-      /* background-color: pink;*/
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      overflow: hidden;
-      height: 30px;
-    }
-
-    section {
-      display: flex;
-
-      align-items: center;
-
-      /*background-color: skyblue;*/
-
-      .NameDate {
-        margin-left: 30px;
-        font-weight: bold;
-      }
-    }
-  `;
-
-  //현재 날짜와 시간 구하기 let now = new Date();
   return (
     <div>
       <Header>
@@ -233,9 +276,9 @@ function Home() {
       <FormBox>
         <FormGroup>
           <label htmlFor="input-name">누구에게 보내요?</label>
-          <select>
-            <option>쿠로미</option>
-            <option>마이멜로디</option>
+          <select onChange={plusMember}>
+            <option value={"쿠로미"}>쿠로미</option>
+            <option value={"마이멜로디"}>마이멜로디</option>
           </select>
         </FormGroup>
 
@@ -246,6 +289,8 @@ function Home() {
             id="input-name"
             maxLength={20}
             placeholder="최대 20글자까지 입력할 수 있어요!"
+            value={nickname}
+            onChange={(e) => setNickname(e.target.value)}
           />
         </FormGroup>
         <FormGroup>
@@ -254,9 +299,13 @@ function Home() {
             id="input-text"
             maxLength={100}
             placeholder="최대 100글자까지 입력할 수 있어요!"
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
           />
         </FormGroup>
-        <button>메세지 보내기</button>
+        <button type="submit" onClick={onSubmitHandler}>
+          메세지 보내기
+        </button>
       </FormBox>
       <MemberBox>
         <li>전체보기</li>
@@ -265,21 +314,25 @@ function Home() {
       </MemberBox>
       <MainList>
         {letters
-          .filter(function (letter) {
+          /*.filter(function (letter) {
             return letter.writedTo === "쿠로미";
-          })
+          })*/
           .map(function (item) {
+            const fontColor = item.writedTo == "쿠로미" ? "#A1619D" : "#E86F9A";
             return (
               <MainBox>
+                <ToWho fontcolor={fontColor}>To. {item.writedTo}</ToWho>
                 <section>
                   <p>
                     <img src={item.avatar} alt="사진" />
                   </p>
                   <div className="NameDate">
                     <h3>{item.nickname}</h3>
+
                     <p>{item.createdAt}</p>
                   </div>
                 </section>
+
                 <div className="MainText">{item.content}</div>
               </MainBox>
             );
