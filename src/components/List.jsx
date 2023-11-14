@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { Link, useNavigate } from "react-router-dom";
+
 const MainBox = styled.div`
   border: 1px solid #aaa;
   padding: 20px;
@@ -51,6 +53,7 @@ const ToWho = styled.p`
 `;
 
 function List({ selectedMember, letters }) {
+  const navigate = useNavigate();
   return (
     <MainList>
       {letters
@@ -63,7 +66,13 @@ function List({ selectedMember, letters }) {
         .map(function (item) {
           const fontColor = item.writedTo === "쿠로미" ? "#A1619D" : "#E86F9A";
           return (
-            <MainBox key={item.id}>
+            //<Link to={`/detail/${item.id}`}>
+            <MainBox
+              key={item.id}
+              onClick={() => {
+                navigate("/detail/2");
+              }}
+            >
               <ToWho fontcolor={fontColor}>To. {item.writedTo}</ToWho>
               <section>
                 <p>
