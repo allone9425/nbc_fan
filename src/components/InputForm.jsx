@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 const FormBox = styled.form`
@@ -78,14 +79,46 @@ const FormGroup = styled.div`
     font-size: 20px;
   }
 `;
-function InputForm({
-  plusMember,
-  nickname,
-  setNickname,
-  content,
-  setContent,
-  onSubmitHandler,
-}) {
+
+function InputForm({ letters, uuid, setLetters }) {
+  //추가하기
+  const [nickname, setNickname] = useState("");
+  const [content, setContent] = useState("");
+
+  const [member, setMember] = useState("쿠로미");
+  const plusMember = function (e) {
+    setMember(e.target.value);
+  };
+  const onSubmitHandler = (e) => {
+    //alert("연결확인");
+    e.preventDefault();
+    //추가하기 유효성 검사
+    //매개변수 nickname과 content를 받아서,
+    //두 값이 모두 존재하면 true를 반환하고,
+    //그렇지 않으면 false를 반환합니다.
+    const inputValid = (nickname, content) => {
+      return nickname && content;
+    };
+
+    //입력값이 유효한지 확인
+    if (inputValid(nickname, content)) {
+      const now = new Date();
+      const newLetters = {
+        createdAt: String(now),
+        nickname: nickname,
+        avatar: require("../assets/default.svg").default,
+        content: content,
+        writedTo: member,
+        id: uuid(),
+      };
+      setLetters([...letters, newLetters]);
+      setNickname("");
+      setContent("");
+      setMember("");
+    } else {
+      alert("이름과 내용은 필수 입력값입니다.");
+    }
+  };
   return (
     <FormBox>
       <FormGroup>
