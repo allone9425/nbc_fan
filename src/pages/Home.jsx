@@ -1,186 +1,10 @@
-import styled from "styled-components";
 import uuid from "react-uuid";
 import { useState } from "react";
-import cover from "../assets/cover.jpg";
+
 import List from "components/List";
-
-const KuromiColor = "#d8c6de";
-const MyMelodyColor = "#f4cad6";
-
-const Header = styled.header`
-  background: url(${cover});
-  background-size: cover;
-  background-position: center;
-  padding: 100px;
-  h2 {
-    font-size: 30px;
-    text-align: center;
-    margin: 30px 0;
-    font-weight: bold;
-  }
-`;
-
-const MemberBox = styled.ul`
-  display: flex;
-  justify-content: center;
-  margin-top: 70px;
-
-  li {
-    background-color: ${KuromiColor};
-    padding: 15px 10px;
-    border-radius: 5px;
-    border: 2px double #fff;
-    margin: 0 10px;
-    width: 100px;
-    font-weight: bold;
-    text-align: center;
-    cursor: pointer;
-    &:last-child {
-      background-color: ${MyMelodyColor};
-    }
-    &:first-child {
-      background: linear-gradient(
-        90deg,
-        rgba(216, 198, 222, 1) 0%,
-        rgba(244, 202, 214, 1) 100%
-      );
-    }
-
-    &:hover {
-      background-color: #fffacd;
-    }
-  }
-`;
-
-const FormBox = styled.form`
-  max-width: 1200px;
-  min-width: 800px;
-  margin: auto;
-  margin-top: 50px;
-  background-color: ${KuromiColor};
-  border: 1px solid #aaa;
-  box-shadow: 3px 3px 5px #aaa;
-  font-size: 16px;
-  padding: 50px;
-  display: flex;
-  gap: 20px;
-  flex-direction: column;
-  border-radius: 10px;
-  button {
-    border: none;
-    font-weight: 500;
-    padding: 20px 10px;
-    background-color: ${MyMelodyColor};
-    font-size: 20px;
-    border-radius: 8px;
-    cursor: pointer;
-    &:hover {
-      background-color: #fffacd;
-    }
-  }
-`;
-
-const FormGroup = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  select {
-    padding: 10px 20px;
-    width: calc(100% - 156px);
-    border: none;
-    font-size: 20px;
-    outline: none;
-    font-weight: 500;
-    font-family: inherit;
-    -webkit-appearance: none; /* 화살표 없애기 for chrome*/
-    -moz-appearance: none; /* 화살표 없애기 for firefox*/
-    appearance: none; /* 화살표 없애기 공통*/
-    &::-ms-expand {
-      display: none; /*for IE10,11*/
-    }
-  }
-
-  label {
-    padding-right: 20px;
-    font-size: 20px;
-    font-weight: 600;
-  }
-
-  textarea {
-    padding: 10px;
-    width: calc(100% - 60px);
-    height: 66px;
-    border: none;
-    font-weight: 500;
-    &::placeholder {
-      color: #ccc;
-    }
-    font-size: 20px;
-  }
-
-  input {
-    font-weight: 500;
-    padding: 10px;
-    width: calc(100% - 60px);
-    border: none;
-    &::placeholder {
-      color: #ccc;
-    }
-    font-size: 20px;
-  }
-`;
-
-const MainList = styled.section`
-  /*background-color: beige;*/
-  margin: auto;
-  max-width: 1200px;
-  min-width: 800px;
-  padding: 40px 0;
-  font-size: 22px;
-  line-height: 2rem;
-`;
-
-const MainBox = styled.div`
-  border: 1px solid #aaa;
-  padding: 20px;
-  border-radius: 20px;
-  box-shadow: 3px 3px 5px #aaa;
-  margin: 30px 0;
-  position: relative;
-  img {
-    width: 80px;
-    height: 80px;
-  }
-  .MainText {
-    margin-top: 20px;
-    /* background-color: pink;*/
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    height: 30px;
-  }
-
-  section {
-    display: flex;
-
-    align-items: center;
-
-    /*background-color: skyblue;*/
-
-    .NameDate {
-      margin-left: 30px;
-      font-weight: bold;
-    }
-  }
-`;
-
-const ToWho = styled.p`
-  position: absolute;
-  right: 20px;
-  font-weight: bold;
-  color: ${(props) => props.fontcolor || "#A1619D"};
-`;
+import InputForm from "components/InputForm";
+import Member from "components/Member";
+import Header from "components/Header";
 
 function Home() {
   const [letters, setLetters] = useState([
@@ -228,6 +52,15 @@ function Home() {
       writedTo: "마이멜로디",
       id: uuid(),
     },
+    {
+      createdAt: "2023-11-05T05:40:17.575Z",
+      nickname: "내가 너를",
+      avatar: require("../assets/default.svg").default,
+      content:
+        "너를 좋아하는 마음은 오로지 나의 것이요. 나의 그리움은 나 혼자만의 것으로도 차고 넘치니까....",
+      writedTo: "쿠로미",
+      id: uuid(),
+    },
   ]);
 
   //추가하기
@@ -272,105 +105,23 @@ function Home() {
 
   //버튼 클릭할때마다 특정 화면만 보여주기
   const [selectedMember, setSelectedMember] = useState("전체보기");
-  //const [MemberOne, SetMemberOne] = useState(true);
-
-  //const [MemberTwo, SetMemberTwo] = useState(false);
-  console.log(selectedMember);
   return (
     <div>
-      <Header>
-        <h2>아티스트 컬렉션</h2>
-      </Header>
+      <Header />
+      <InputForm
+        plusMember={plusMember}
+        nickname={nickname}
+        setNickname={setNickname}
+        content={content}
+        setContent={setContent}
+        onSubmitHandler={onSubmitHandler}
+      />
 
-      <FormBox>
-        <FormGroup>
-          <label htmlFor="input-name">누구에게 보내요?</label>
-          <select onChange={plusMember}>
-            <option value={"쿠로미"}>쿠로미</option>
-            <option value={"마이멜로디"}>마이멜로디</option>
-          </select>
-        </FormGroup>
-
-        <FormGroup>
-          <label htmlFor="input-name">이름</label>
-          <input
-            type="text"
-            id="input-name"
-            maxLength={20}
-            placeholder="최대 20글자까지 입력할 수 있어요!"
-            value={nickname}
-            onChange={(e) => setNickname(e.target.value)}
-          />
-        </FormGroup>
-        <FormGroup>
-          <label htmlFor="input-text">내용</label>
-          <textarea
-            id="input-text"
-            maxLength={100}
-            placeholder="최대 100글자까지 입력할 수 있어요!"
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-          />
-        </FormGroup>
-        <button type="submit" onClick={onSubmitHandler}>
-          메세지 보내기
-        </button>
-      </FormBox>
-      <MemberBox>
-        <li
-          onClick={function () {
-            setSelectedMember("전체보기");
-            console.log("전체클릭됨");
-          }}
-        >
-          전체보기
-        </li>
-        <li
-          onClick={function () {
-            setSelectedMember("쿠로미");
-          }}
-        >
-          쿠로미
-        </li>
-        <li
-          onClick={function () {
-            setSelectedMember("마이멜로디");
-          }}
-        >
-          마이멜로디
-        </li>
-      </MemberBox>
-      <MainList>
-        <div>
-          {letters
-            .filter(function (letter) {
-              if ("전체보기" === selectedMember) {
-                return true;
-              }
-
-              return letter.writedTo === selectedMember;
-            })
-            .map(function (item) {
-              const fontColor =
-                item.writedTo === "쿠로미" ? "#A1619D" : "#E86F9A";
-              return (
-                <MainBox key={item.id}>
-                  <ToWho fontcolor={fontColor}>To. {item.writedTo}</ToWho>
-                  <section>
-                    <p>
-                      <img src={item.avatar} alt="사진" />
-                    </p>
-                    <div className="NameDate">
-                      <h3>{item.nickname}</h3>
-                      <p>{item.createdAt}</p>
-                    </div>
-                  </section>
-                  <div className="MainText">{item.content}</div>
-                </MainBox>
-              );
-            })}
-        </div>
-      </MainList>
+      <Member
+        selectedMember={selectedMember}
+        setSelectedMember={setSelectedMember}
+      />
+      <List selectedMember={selectedMember} letters={letters} />
     </div>
   );
 }

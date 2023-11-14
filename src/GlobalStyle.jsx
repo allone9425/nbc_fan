@@ -11,6 +11,15 @@ const GlobalStyle = createGlobalStyle`
     font-weight: 400;
     font-style: normal;
 }
+
+
+
+@font-face {
+    font-family: 'PartialSansKR-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-1@1.1/PartialSansKR-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -75,6 +84,11 @@ input{
 }
 
 img{vertical-align:middle}
+
+a{color:inherit;
+	text-decoration: none;}
+
+
 `;
 
 export default GlobalStyle;
