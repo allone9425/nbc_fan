@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
+import { data } from "shared/data";
 
 const FormBox = styled.form`
   max-width: 1200px;
@@ -103,8 +104,11 @@ function InputForm({ letters, uuid, setLetters }) {
     //입력값이 유효한지 확인
     if (inputValid(nickname, content)) {
       const now = new Date();
+      //nowKor = now.toDateString()은 현재 날짜를 문자열로 변환,
+      // now.toLocaleTimeString()은 현재 시간을 문자열로 변환 해서 둘다 ``으로 합치기
+      const nowKor = `${now.toDateString()} ${now.toLocaleTimeString()}`;
       const newLetters = {
-        createdAt: String(now),
+        createdAt: nowKor,
         nickname: nickname,
         avatar: require("../assets/default.svg").default,
         content: content,
@@ -112,6 +116,7 @@ function InputForm({ letters, uuid, setLetters }) {
         id: uuid(),
       };
       setLetters([...letters, newLetters]);
+      data.push(newLetters);
       setNickname("");
       setContent("");
       setMember("");

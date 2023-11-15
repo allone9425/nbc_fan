@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import uuid from "react-uuid";
 import List from "components/List";
 import InputForm from "components/InputForm";
@@ -12,6 +12,11 @@ function Home() {
   //버튼 클릭할때마다 특정 화면만 보여주기
   const [selectedMember, setSelectedMember] = useState("전체보기");
 
+  useEffect(() => {
+    setLetters(data);
+    console.log(data);
+  }, [data]); //
+
   return (
     <div>
       <Header />
@@ -21,7 +26,12 @@ function Home() {
         selectedMember={selectedMember}
         setSelectedMember={setSelectedMember}
       />
-      <List selectedMember={selectedMember} letters={letters} />
+
+      {letters.length === 0 ? (
+        <p>남겨진 팬레터가 없습니다</p>
+      ) : (
+        <List selectedMember={selectedMember} letters={letters} />
+      )}
     </div>
   );
 }

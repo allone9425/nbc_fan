@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const MainBox = styled.div`
   border: 1px solid #aaa;
@@ -12,14 +12,6 @@ const MainBox = styled.div`
     width: 80px;
     height: 80px;
   }
-  .MainText {
-    margin-top: 20px;
-    /* background-color: pink;*/
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    height: 30px;
-  }
 
   section {
     display: flex;
@@ -27,12 +19,21 @@ const MainBox = styled.div`
     align-items: center;
 
     /*background-color: skyblue;*/
-
-    .NameDate {
-      margin-left: 30px;
-      font-weight: bold;
-    }
   }
+`;
+
+const NameData = styled.div`
+  margin-left: 30px;
+  font-weight: bold;
+`;
+
+const MainText = styled.div`
+  margin-top: 20px;
+  /* background-color: pink;*/
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  height: 30px;
 `;
 
 const MainList = styled.section`
@@ -53,7 +54,6 @@ const ToWho = styled.p`
 `;
 
 function List({ selectedMember, letters }) {
-  const navigate = useNavigate();
   return (
     <MainList>
       {letters
@@ -66,25 +66,21 @@ function List({ selectedMember, letters }) {
         .map(function (item) {
           const fontColor = item.writedTo === "쿠로미" ? "#A1619D" : "#E86F9A";
           return (
-            //<Link to={`/detail/${item.id}`}>
-            <MainBox
-              key={item.id}
-              onClick={() => {
-                navigate("/detail/2");
-              }}
-            >
-              <ToWho fontcolor={fontColor}>To. {item.writedTo}</ToWho>
-              <section>
-                <p>
-                  <img src={item.avatar} alt="사진" />
-                </p>
-                <div className="NameDate">
-                  <h3>{item.nickname}</h3>
-                  <p>{item.createdAt}</p>
-                </div>
-              </section>
-              <div className="MainText">{item.content}</div>
-            </MainBox>
+            <Link to={`/detail/${item.id}`}>
+              <MainBox key={item.id}>
+                <ToWho fontcolor={fontColor}>To. {item.writedTo}</ToWho>
+                <section>
+                  <p>
+                    <img src={item.avatar} alt="사진" />
+                  </p>
+                  <NameData>
+                    <h3>{item.nickname}</h3>
+                    <p>{item.createdAt}</p>
+                  </NameData>
+                </section>
+                <MainText>{item.content}</MainText>
+              </MainBox>
+            </Link>
           );
         })}
     </MainList>

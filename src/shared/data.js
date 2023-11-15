@@ -1,7 +1,7 @@
 import uuid from "react-uuid";
 export const data = [
   {
-    createdAt: "2023-11-03T02:07:09.423Z",
+    createdAt: "Fri Nov 08 2023 오후 3:45:16",
     nickname: "별헤는 밤",
     avatar: require("../assets/1.svg").default,
     content:
@@ -10,7 +10,7 @@ export const data = [
     id: uuid(),
   },
   {
-    createdAt: "2023-11-02T23:13:18.491Z",
+    createdAt: "Wed Nov 05 2023 오전 7:45:16",
     nickname: "서시",
     avatar: require("../assets/2.svg").default,
     content:
@@ -19,7 +19,7 @@ export const data = [
     id: uuid(),
   },
   {
-    createdAt: "2023-11-02T11:25:37.026Z",
+    createdAt: "Sat Nov 08 2023 오후 5:42:22",
     nickname: "꽃",
     avatar: require("../assets/3.svg").default,
     content:
@@ -28,7 +28,7 @@ export const data = [
     id: uuid(),
   },
   {
-    createdAt: "2023-11-02T16:06:34.150Z",
+    createdAt: "Mon Nov 03 2023 오전 9:43:26",
     nickname: "풀꽃",
     avatar: require("../assets/4.svg").default,
     content: "자세히 보아야 예쁘다. 오래 보아야 사랑스럽다. 너도 그렇다.",
@@ -36,7 +36,7 @@ export const data = [
     id: uuid(),
   },
   {
-    createdAt: "2023-11-03T05:40:17.575Z",
+    createdAt: "Thu Nov 13 2023 오후 9:27:36",
     nickname: "꽃밭",
     avatar: require("../assets/5.svg").default,
     content:
@@ -45,7 +45,7 @@ export const data = [
     id: uuid(),
   },
   {
-    createdAt: "2023-11-05T05:40:17.575Z",
+    createdAt: "Sun Nov 09 2023 오후 6:23:19",
     nickname: "내가 너를",
     avatar: require("../assets/default.svg").default,
     content:
