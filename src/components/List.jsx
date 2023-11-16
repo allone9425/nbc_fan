@@ -50,6 +50,7 @@ const ToWho = styled.p`
   position: absolute;
   right: 20px;
   font-weight: bold;
+
   color: ${(props) => props.fontcolor || "#A1619D"};
 `;
 

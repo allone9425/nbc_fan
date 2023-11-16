@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate, useParams, useLocation } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 import { data } from "shared/data";
 import styled from "styled-components";
@@ -57,7 +57,7 @@ const BackBtn = styled.button`
 `;
 
 const LetterContents = styled.p`
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.5);
 
   border-radius: 10px;
 
@@ -92,7 +92,7 @@ const ModfiyRemoveBtn = styled.div`
   }
 `;
 
-const EditableTextArea = styled.textarea`
+const EditTextArea = styled.textarea`
   width: 100%;
   height: 124px;
   margin-bottom: 20px;
@@ -113,7 +113,7 @@ function Detail({ letters, setLetters }) {
   const [editing, setEditing] = useState("");
 
   const navigate = useNavigate();
-  const location = useLocation();
+  //const location = useLocation();
   const params = useParams();
   const foundData = data.find((item) => {
     return item.id === params.id;
@@ -149,10 +149,11 @@ function Detail({ letters, setLetters }) {
     if (editing.trim() === foundData.content.trim()) {
       alert("아무런 수정사항이 없어요!");
     } else {
-      const updatedLetters = letters.map((item) =>
+      const updateLetters = letters.map((item) =>
         item.id === foundData.id ? { ...item, content: editing } : item
       );
-      setLetters(updatedLetters);
+      setLetters(updateLetters);
+      //navigate("/");
       setEdit(false);
     }
     console.log(editing);
@@ -173,7 +174,7 @@ function Detail({ letters, setLetters }) {
         <h2>To. {foundData.writedTo}</h2>
         {/*<LetterContents>{foundData.content}</LetterContents>*/}
         {edit ? (
-          <EditableTextArea
+          <EditTextArea
             value={editing}
             onChange={(e) => setEditing(e.target.value)}
           />
@@ -187,8 +188,8 @@ function Detail({ letters, setLetters }) {
       <ModfiyRemoveBtn>
         {edit ? (
           <>
-            <button onClick={saveBtn}>수정완료</button>
-            <button onClick={cancelBtn}>수정취소</button>
+            <button onClick={saveBtn}>완료</button>
+            <button onClick={cancelBtn}>취소</button>
           </>
         ) : (
           <>
