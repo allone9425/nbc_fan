@@ -55,6 +55,7 @@ body {
 	line-height: 1;
 	font-size:16px;
 	font-family: 'Pretendard-Regular';
+
 	
 }
 ol, ul, li {

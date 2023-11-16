@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 const MainBox = styled.div`
-  border: 1px solid #aaa;
+  // border: 1px solid #aaa;
   padding: 20px;
   border-radius: 20px;
   box-shadow: 3px 3px 5px #aaa;
@@ -53,7 +53,7 @@ const ToWho = styled.p`
   right: 20px;
   font-weight: bold;
 
-  color: ${(props) => props.fontcolor || "#A1619D"};
+  color: ${(props) => props.color || "#A1619D"};
 `;
 
 function List({ selectedMember, letters }) {
@@ -68,7 +68,7 @@ function List({ selectedMember, letters }) {
           return letter.writedTo === selectedMember;
         })
         .map(function (item) {
-          const fontColor = item.writedTo === "쿠로미" ? "#A1619D" : "#E86F9A";
+          const color = item.writedTo === "쿠로미" ? "#A1619D" : "#E86F9A";
           return (
             <Link to={`/detail/${item.id}`} key={item.id}>
               <MainBox
@@ -77,7 +77,7 @@ function List({ selectedMember, letters }) {
                 //  navigate(`/detail/${item.id}`, { state: letters });
                 //}}
               >
-                <ToWho fontcolor={fontColor}>To. {item.writedTo}</ToWho>
+                <ToWho color={color}>To. {item.writedTo}</ToWho>
                 <section>
                   <p>
                     <img src={item.avatar} alt="사진" />

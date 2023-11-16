@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-
-import { data } from "shared/data";
+import backgroundImage from "../assets/detailbg.jpg";
 import styled from "styled-components";
 
 const DetailBox = styled.div`
@@ -9,6 +8,7 @@ const DetailBox = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 99;
 `;
 const BigBox = styled.div`
   background-color: #d8c6de;
@@ -104,6 +104,15 @@ const EditTextArea = styled.textarea`
   padding: 15px;
   line-height: 1.9rem;
 `;
+
+const Bg = styled.img`
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+`;
 function Detail({ letters, setLetters }) {
   const navigate = useNavigate();
   //const location = useLocation();
@@ -161,46 +170,49 @@ function Detail({ letters, setLetters }) {
   };
 
   return (
-    <DetailBox>
-      <Link to={"/"}>
-        <BackBtn>&larr; 메인으로</BackBtn>
-      </Link>
+    <>
+      <Bg src={backgroundImage} />
+      <DetailBox>
+        <Link to={"/"}>
+          <BackBtn>&larr; 메인으로</BackBtn>
+        </Link>
 
-      <BigBox>
-        {/*<h3>{foundData.id}</h3>*/}
+        <BigBox>
+          {/*<h3>{foundData.id}</h3>*/}
 
-        <Avatar>
-          <img src={foundData.avatar} alt="사진" />
-        </Avatar>
-        <h2>To. {foundData.writedTo}</h2>
-        {/*<LetterContents>{foundData.content}</LetterContents>*/}
-        {edit ? (
-          <EditTextArea
-            value={editing}
-            autoFocus
-            onChange={(e) => setEditing(e.target.value)}
-          />
-        ) : (
-          <LetterContents>{foundData.content}</LetterContents>
-        )}
+          <Avatar>
+            <img src={foundData.avatar} alt="사진" />
+          </Avatar>
+          <h2>To. {foundData.writedTo}</h2>
+          {/*<LetterContents>{foundData.content}</LetterContents>*/}
+          {edit ? (
+            <EditTextArea
+              value={editing}
+              autoFocus
+              onChange={(e) => setEditing(e.target.value)}
+            />
+          ) : (
+            <LetterContents>{foundData.content}</LetterContents>
+          )}
 
-        <h3>Written By {foundData.nickname}</h3>
-        <h3>{foundData.createdAt}</h3>
-      </BigBox>
-      <ModfiyRemoveBtn>
-        {edit ? (
-          <>
-            <button onClick={saveBtn}>완료</button>
-            <button onClick={cancelBtn}>취소</button>
-          </>
-        ) : (
-          <>
-            <button onClick={modifyBtn}>수정</button>
-            <button onClick={deleteBtn}>삭제</button>
-          </>
-        )}
-      </ModfiyRemoveBtn>
-    </DetailBox>
+          <h3>Written By {foundData.nickname}</h3>
+          <h3>{foundData.createdAt}</h3>
+        </BigBox>
+        <ModfiyRemoveBtn>
+          {edit ? (
+            <>
+              <button onClick={saveBtn}>완료</button>
+              <button onClick={cancelBtn}>취소</button>
+            </>
+          ) : (
+            <>
+              <button onClick={modifyBtn}>수정</button>
+              <button onClick={deleteBtn}>삭제</button>
+            </>
+          )}
+        </ModfiyRemoveBtn>
+      </DetailBox>
+    </>
   );
 }
 

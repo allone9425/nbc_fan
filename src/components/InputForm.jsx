@@ -1,6 +1,5 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { data } from "shared/data";
 
 const FormBox = styled.form`
   max-width: 1200px;
@@ -8,7 +7,7 @@ const FormBox = styled.form`
   margin: auto;
   margin-top: 50px;
   background-color: #d8c6de;
-  border: 1px solid #aaa;
+  //border: 1px solid #aaa;
   box-shadow: 3px 3px 5px #aaa;
   font-size: 16px;
   padding: 50px;
@@ -117,7 +116,6 @@ function InputForm({ letters, uuid, setLetters }) {
         id: uuid(),
       };
       setLetters([...letters, newLetters]);
-      //data.push(newLetters);
       setNickname("");
       setContent("");
       setMember("");
