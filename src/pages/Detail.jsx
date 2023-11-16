@@ -105,17 +105,10 @@ const EditTextArea = styled.textarea`
   line-height: 1.9rem;
 `;
 function Detail({ letters, setLetters }) {
-  //수정기능을 위한 스테이트
-  //수정 중인지 아닌지 알려주는 스테이트
-  const [edit, setEdit] = useState(false);
-
-  //수정 중일때 상태 관리하는 스테이트
-  const [editing, setEditing] = useState("");
-
   const navigate = useNavigate();
   //const location = useLocation();
   const params = useParams();
-  const foundData = data.find((item) => {
+  const foundData = letters.find((item) => {
     return item.id === params.id;
   });
 
@@ -135,6 +128,13 @@ function Detail({ letters, setLetters }) {
     }
   };
 
+  //수정기능을 위한 스테이트
+  //수정 중인지 아닌지 알려주는 스테이트
+  const [edit, setEdit] = useState(false);
+
+  //수정 중일때 상태 관리하는 스테이트
+  const [editing, setEditing] = useState("");
+
   const modifyBtn = () => {
     setEdit(true);
     setEditing(foundData.content);
@@ -146,15 +146,16 @@ function Detail({ letters, setLetters }) {
   };
 
   const saveBtn = () => {
-    if (editing.trim() === foundData.content.trim()) {
+    if (editing === foundData.content) {
       alert("아무런 수정사항이 없어요!");
     } else {
       const updateLetters = letters.map((item) =>
         item.id === foundData.id ? { ...item, content: editing } : item
       );
       setLetters(updateLetters);
-      //navigate("/");
+      navigate("/");
       setEdit(false);
+      setEditing("");
     }
     console.log(editing);
   };
@@ -176,6 +177,7 @@ function Detail({ letters, setLetters }) {
         {edit ? (
           <EditTextArea
             value={editing}
+            autoFocus
             onChange={(e) => setEditing(e.target.value)}
           />
         ) : (

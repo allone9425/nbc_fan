@@ -117,7 +117,7 @@ function InputForm({ letters, uuid, setLetters }) {
         id: uuid(),
       };
       setLetters([...letters, newLetters]);
-      data.push(newLetters);
+      //data.push(newLetters);
       setNickname("");
       setContent("");
       setMember("");
