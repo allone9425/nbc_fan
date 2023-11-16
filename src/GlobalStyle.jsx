@@ -89,6 +89,8 @@ a{color:inherit;
 	text-decoration: none;}
 
 
+h6{text-align:center;font-size:22px; margin: 100px 0;}
+
 `;
 
 export default GlobalStyle;

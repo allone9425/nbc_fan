@@ -54,6 +54,7 @@ const ToWho = styled.p`
 `;
 
 function List({ selectedMember, letters }) {
+  //const navigate = useNavigate();
   return (
     <MainList>
       {letters
@@ -66,8 +67,13 @@ function List({ selectedMember, letters }) {
         .map(function (item) {
           const fontColor = item.writedTo === "쿠로미" ? "#A1619D" : "#E86F9A";
           return (
-            <Link to={`/detail/${item.id}`}>
-              <MainBox key={item.id}>
+            <Link to={`/detail/${item.id}`} key={item.id}>
+              <MainBox
+                key={item.id}
+                //onClick={() => {
+                //  navigate(`/detail/${item.id}`, { state: letters });
+                //}}
+              >
                 <ToWho fontcolor={fontColor}>To. {item.writedTo}</ToWho>
                 <section>
                   <p>

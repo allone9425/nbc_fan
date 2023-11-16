@@ -49,7 +49,7 @@ export const data = [
     nickname: "내가 너를",
     avatar: require("../assets/default.svg").default,
     content:
-      "너를 좋아하는 마음은 오로지 나의 것이요. 나의 그리움은 나 혼자만의 것으로도 차고 넘치니까....",
+      "너를 좋아하는 마음은 오로지 나의 것이요. 나의 그리움은 나 혼자만의 것으로도 차고 넘치니까.",
     writedTo: "쿠로미",
     id: uuid(),
   },

@@ -90,6 +90,7 @@ function InputForm({ letters, uuid, setLetters }) {
   const plusMember = function (e) {
     setMember(e.target.value);
   };
+
   const onSubmitHandler = (e) => {
     //alert("연결확인");
     e.preventDefault();

@@ -1,4 +1,6 @@
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate, useParams, useLocation } from "react-router-dom";
+
 import { data } from "shared/data";
 import styled from "styled-components";
 
@@ -90,22 +92,30 @@ const ModfiyRemoveBtn = styled.div`
   }
 `;
 function Detail({ letters, setLetters }) {
+  //수정기능을 위한 스테이트
+  const [edit, SetEdit] = useState(false);
+
   const navigate = useNavigate();
+  const location = useLocation();
   const params = useParams();
   const foundData = data.find((item) => {
     return item.id === params.id;
   });
 
   //console.log("params", params);
-  console.log("found", foundData);
+  //console.log("found", foundData);
 
   const deleteBtn = () => {
-    // 선택된 아이템을 제외한 새로운 배열 생성
-    const newLetters = letters?.filter((item) => item.id != foundData.id);
-    // 상태 업데이트
-    setLetters(newLetters);
-    // 메인 페이지로 가기
-    navigate("/");
+    // 삭제 확인하기  window.confirm
+    const alertDelete = window.confirm("정말 삭제할래요?");
+    if (alertDelete) {
+      // 선택된 아이템을 제외한 새로운 배열 생성
+      const newLetters = letters.filter((item) => item.id !== foundData.id);
+      // 메인 페이지로 가기
+      navigate("/");
+      // 상태 업데이트
+      setLetters(newLetters);
+    }
   };
 
   return (
