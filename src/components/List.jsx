@@ -8,6 +8,7 @@ const MainBox = styled.div`
   box-shadow: 3px 3px 5px #aaa;
   margin: 30px 0;
   position: relative;
+  background-color: #f4eef0;
 
   img {
     width: 80px;

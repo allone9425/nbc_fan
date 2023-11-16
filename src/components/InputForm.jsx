@@ -122,7 +122,7 @@ function InputForm({ letters, uuid, setLetters }) {
       setContent("");
       setMember("");
     } else {
-      alert("이름과 내용은 필수 입력값입니다.");
+      alert("이름과 내용을 입력해주세요.");
     }
   };
   return (

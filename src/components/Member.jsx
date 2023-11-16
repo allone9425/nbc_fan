@@ -9,7 +9,7 @@ const MemberBox = styled.ul`
     background-color: #d8c6de;
     padding: 15px 10px;
     border-radius: 5px;
-    border: 2px double #fff;
+    // border: 2px double #fff;
     margin: 0 10px;
     width: 100px;
     font-weight: bold;
