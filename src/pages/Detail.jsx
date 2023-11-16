@@ -91,9 +91,26 @@ const ModfiyRemoveBtn = styled.div`
     }
   }
 `;
+
+const EditableTextArea = styled.textarea`
+  width: 100%;
+  height: 124px;
+  margin-bottom: 20px;
+  background-color: #fff;
+  font-family: inherit;
+  font-size: inherit;
+  border-radius: 10px;
+  border: none;
+  padding: 15px;
+  line-height: 1.9rem;
+`;
 function Detail({ letters, setLetters }) {
   //수정기능을 위한 스테이트
-  const [edit, SetEdit] = useState(false);
+  //수정 중인지 아닌지 알려주는 스테이트
+  const [edit, setEdit] = useState(false);
+
+  //수정 중일때 상태 관리하는 스테이트
+  const [editing, setEditing] = useState("");
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -118,6 +135,29 @@ function Detail({ letters, setLetters }) {
     }
   };
 
+  const modifyBtn = () => {
+    setEdit(true);
+    setEditing(foundData.content);
+  };
+
+  const cancelBtn = () => {
+    setEdit(false);
+    setEditing("");
+  };
+
+  const saveBtn = () => {
+    if (editing.trim() === foundData.content.trim()) {
+      alert("아무런 수정사항이 없어요!");
+    } else {
+      const updatedLetters = letters.map((item) =>
+        item.id === foundData.id ? { ...item, content: editing } : item
+      );
+      setLetters(updatedLetters);
+      setEdit(false);
+    }
+    console.log(editing);
+  };
+
   return (
     <DetailBox>
       <Link to={"/"}>
@@ -131,14 +171,31 @@ function Detail({ letters, setLetters }) {
           <img src={foundData.avatar} alt="사진" />
         </Avatar>
         <h2>To. {foundData.writedTo}</h2>
-        <LetterContents>{foundData.content}</LetterContents>
+        {/*<LetterContents>{foundData.content}</LetterContents>*/}
+        {edit ? (
+          <EditableTextArea
+            value={editing}
+            onChange={(e) => setEditing(e.target.value)}
+          />
+        ) : (
+          <LetterContents>{foundData.content}</LetterContents>
+        )}
 
         <h3>Written By {foundData.nickname}</h3>
         <h3>{foundData.createdAt}</h3>
       </BigBox>
       <ModfiyRemoveBtn>
-        <button>수정</button>
-        <button onClick={deleteBtn}>삭제</button>
+        {edit ? (
+          <>
+            <button onClick={saveBtn}>수정완료</button>
+            <button onClick={cancelBtn}>수정취소</button>
+          </>
+        ) : (
+          <>
+            <button onClick={modifyBtn}>수정</button>
+            <button onClick={deleteBtn}>삭제</button>
+          </>
+        )}
       </ModfiyRemoveBtn>
     </DetailBox>
   );
