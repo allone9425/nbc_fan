@@ -1,8 +1,11 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-
-function List({ selectedMember, letters }) {
-  //const navigate = useNavigate();
+import { useContext } from "react";
+import { LettersContext } from "context/LettersContext";
+import { SelectMemberContext } from "context/LettersContext";
+function List() {
+  const { letters } = useContext(LettersContext);
+  const { selectedMember } = useContext(SelectMemberContext);
   return (
     <MainList>
       {letters

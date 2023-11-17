@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import backgroundImage from "../assets/detailbg.jpg";
+import { LettersContext } from "context/LettersContext";
 import {
   DetailBox,
   BigBox,
@@ -12,7 +13,8 @@ import {
   ModfiyRemoveBtn,
 } from "./Detail.style";
 
-function Detail({ letters, setLetters }) {
+function Detail() {
+  const { letters, setLetters } = useContext(LettersContext);
   const navigate = useNavigate();
   //const location = useLocation();
   const params = useParams();
@@ -61,11 +63,11 @@ function Detail({ letters, setLetters }) {
         item.id === foundData.id ? { ...item, content: editing } : item
       );
       setLetters(updateLetters);
-      navigate("/");
+      //navigate("/");
       setEdit(false);
       setEditing("");
     }
-    console.log(editing);
+    //console.log(editing);
   };
 
   return (

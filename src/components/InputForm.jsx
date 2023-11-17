@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { FormBox, FormGroup } from "./InputForm.style";
+import { LettersContext } from "context/LettersContext";
 
-function InputForm({ letters, uuid, setLetters }) {
+function InputForm({ uuid }) {
+  const { letters, setLetters } = useContext(LettersContext);
   //추가하기
   const [nickname, setNickname] = useState("");
   const [content, setContent] = useState("");

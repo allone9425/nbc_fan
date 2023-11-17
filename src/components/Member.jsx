@@ -1,6 +1,8 @@
 import styled from "styled-components";
-
-function Member({ setSelectedMember, selectedMember }) {
+import { useContext } from "react";
+import { SelectMemberContext } from "context/LettersContext";
+function Member() {
+  const { setSelectedMember, selectedMember } = useContext(SelectMemberContext);
   return (
     <MemberBox>
       <li
