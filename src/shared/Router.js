@@ -2,17 +2,20 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "pages/Home";
 import Detail from "pages/Detail";
 import { useState } from "react";
-import { data } from "./data";
+import data from "./data.json";
+import uuid from "react-uuid";
 
 const Router = () => {
   //useNavigate -> 파라미터를 넣을 수 있음
-
-  const [letters, setLetters] = useState(data); /*data.map((aData) => {
-    return
-      {...aData, id : uuid()}
-    
-  })*/
-  //console.log(letters);
+  console.log(data);
+  const [letters, setLetters] = useState(
+    data.map((aData) => {
+      return {
+        ...aData,
+        id: uuid(),
+      };
+    })
+  );
   return (
     <BrowserRouter>
       <Routes>
