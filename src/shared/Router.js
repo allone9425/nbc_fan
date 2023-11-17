@@ -6,7 +6,6 @@ import data from "./data.json";
 import uuid from "react-uuid";
 import { LettersContext } from "context/LettersContext";
 const Router = () => {
-  //console.log(data);
   const [letters, setLetters] = useState(
     data.map((aData) => {
       return {
