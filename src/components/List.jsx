@@ -1,6 +1,48 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
+function List({ selectedMember, letters }) {
+  //const navigate = useNavigate();
+  return (
+    <MainList>
+      {letters
+        .filter(function (letter) {
+          if ("전체보기" === selectedMember) {
+            return true;
+          }
+          return letter.writedTo === selectedMember;
+        })
+        .map(function (item) {
+          const color = item.writedTo === "쿠로미" ? "#A1619D" : "#E86F9A";
+          return (
+            <Link to={`/detail/${item.id}`} key={item.id}>
+              <MainBox
+                key={item.id}
+                //onClick={() => {
+                //  navigate(`/detail/${item.id}`, { state: letters });
+                //}}
+              >
+                <ToWho color={color}>To. {item.writedTo}</ToWho>
+                <section>
+                  <p>
+                    <img src={item.avatar} alt="사진" />
+                  </p>
+                  <NameData>
+                    <h3>{item.nickname}</h3>
+                    <p>{item.createdAt}</p>
+                  </NameData>
+                </section>
+                <MainText>{item.content}</MainText>
+              </MainBox>
+            </Link>
+          );
+        })}
+    </MainList>
+  );
+}
+
+export default List;
+
 const MainBox = styled.div`
   // border: 1px solid #aaa;
   padding: 20px;
@@ -55,45 +97,3 @@ const ToWho = styled.p`
 
   color: ${(props) => props.color || "#A1619D"};
 `;
-
-function List({ selectedMember, letters }) {
-  //const navigate = useNavigate();
-  return (
-    <MainList>
-      {letters
-        .filter(function (letter) {
-          if ("전체보기" === selectedMember) {
-            return true;
-          }
-          return letter.writedTo === selectedMember;
-        })
-        .map(function (item) {
-          const color = item.writedTo === "쿠로미" ? "#A1619D" : "#E86F9A";
-          return (
-            <Link to={`/detail/${item.id}`} key={item.id}>
-              <MainBox
-                key={item.id}
-                //onClick={() => {
-                //  navigate(`/detail/${item.id}`, { state: letters });
-                //}}
-              >
-                <ToWho color={color}>To. {item.writedTo}</ToWho>
-                <section>
-                  <p>
-                    <img src={item.avatar} alt="사진" />
-                  </p>
-                  <NameData>
-                    <h3>{item.nickname}</h3>
-                    <p>{item.createdAt}</p>
-                  </NameData>
-                </section>
-                <MainText>{item.content}</MainText>
-              </MainBox>
-            </Link>
-          );
-        })}
-    </MainList>
-  );
-}
-
-export default List;

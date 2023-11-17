@@ -7,7 +7,11 @@ import { data } from "./data";
 const Router = () => {
   //useNavigate -> 파라미터를 넣을 수 있음
 
-  const [letters, setLetters] = useState(data);
+  const [letters, setLetters] = useState(data); /*data.map((aData) => {
+    return
+      {...aData, id : uuid()}
+    
+  })*/
   //console.log(letters);
   return (
     <BrowserRouter>

@@ -1,4 +1,37 @@
 import styled from "styled-components";
+
+function Member({ setSelectedMember, selectedMember }) {
+  return (
+    <MemberBox>
+      <li
+        className={selectedMember === "전체보기" ? "selected" : ""}
+        onClick={function () {
+          setSelectedMember("전체보기");
+        }}
+      >
+        전체보기
+      </li>
+      <li
+        className={selectedMember === "쿠로미" ? "selected" : ""}
+        onClick={function () {
+          setSelectedMember("쿠로미");
+        }}
+      >
+        쿠로미
+      </li>
+      <li
+        className={selectedMember === "마이멜로디" ? "selected" : ""}
+        onClick={function () {
+          setSelectedMember("마이멜로디");
+        }}
+      >
+        마이멜로디
+      </li>
+    </MemberBox>
+  );
+}
+
+export default Member;
 const MemberBox = styled.ul`
   display: flex;
   justify-content: center;
@@ -37,36 +70,3 @@ const MemberBox = styled.ul`
     }
   }
 `;
-
-function Member({ setSelectedMember, selectedMember }) {
-  return (
-    <MemberBox>
-      <li
-        className={selectedMember === "전체보기" ? "selected" : ""}
-        onClick={function () {
-          setSelectedMember("전체보기");
-        }}
-      >
-        전체보기
-      </li>
-      <li
-        className={selectedMember === "쿠로미" ? "selected" : ""}
-        onClick={function () {
-          setSelectedMember("쿠로미");
-        }}
-      >
-        쿠로미
-      </li>
-      <li
-        className={selectedMember === "마이멜로디" ? "selected" : ""}
-        onClick={function () {
-          setSelectedMember("마이멜로디");
-        }}
-      >
-        마이멜로디
-      </li>
-    </MemberBox>
-  );
-}
-
-export default Member;

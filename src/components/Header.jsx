@@ -1,5 +1,17 @@
 import styled from "styled-components";
 import cover from "../assets/cover.jpg";
+
+function Header() {
+  return (
+    <Title>
+      <a href="./">
+        <h2>아티스트 컬렉션</h2>
+      </a>
+    </Title>
+  );
+}
+
+export default Header;
 const Title = styled.header`
   background: url(${cover});
   background-size: cover;
@@ -16,14 +28,3 @@ const Title = styled.header`
     opacity: 0.5;
   }
 `;
-function Header() {
-  return (
-    <Title>
-      <a href="./">
-        <h2>아티스트 컬렉션</h2>
-      </a>
-    </Title>
-  );
-}
-
-export default Header;
