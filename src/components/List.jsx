@@ -1,3 +1,4 @@
+import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -22,12 +23,7 @@ function List() {
           const color = item.writedTo === "쿠로미" ? "#A1619D" : "#E86F9A";
           return (
             <Link to={`/detail/${item.id}`} key={item.id}>
-              <MainBox
-                key={item.id}
-                //onClick={() => {
-                //  navigate(`/detail/${item.id}`, { state: letters });
-                //}}
-              >
+              <MainBox key={item.id}>
                 <ToWho color={color}>To. {item.writedTo}</ToWho>
                 <section>
                   <p>

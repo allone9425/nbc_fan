@@ -1,3 +1,4 @@
+import React from "react";
 import { useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import backgroundImage from "../assets/detailbg.jpg";
