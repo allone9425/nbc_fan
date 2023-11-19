@@ -1,9 +1,12 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { FormBox, FormGroup } from "./InputForm.style";
-import { LettersContext } from "context/LettersContext";
+
+import { useDispatch } from "react-redux";
+import { addLetter } from "redux/reducers/letterReducer";
 
 function InputForm({ uuid }) {
-  const { letters, setLetters } = useContext(LettersContext);
+  const dispatch = useDispatch();
+
   //추가하기
   const [nickname, setNickname] = useState("");
   const [content, setContent] = useState("");
@@ -38,7 +41,8 @@ function InputForm({ uuid }) {
         writedTo: member,
         id: uuid(),
       };
-      setLetters([...letters, newLetters]);
+      dispatch(addLetter(newLetters));
+      //setLetters([...letters, newLetters]);
       setNickname("");
       setContent("");
       setMember("");

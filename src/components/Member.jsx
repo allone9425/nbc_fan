@@ -1,31 +1,29 @@
 import styled from "styled-components";
-import { useContext } from "react";
-import { SelectMemberContext } from "context/LettersContext";
+import { useDispatch, useSelector } from "react-redux";
+import { updateSelectedMember } from "redux/reducers/selectMemberReducer";
+
 function Member() {
-  const { setSelectedMember, selectedMember } = useContext(SelectMemberContext);
+  const dispatch = useDispatch();
+  const selectedMember = useSelector(
+    (state) => state.selectMember.selectedMember
+  );
   return (
     <MemberBox>
       <li
         className={selectedMember === "전체보기" ? "selected" : ""}
-        onClick={function () {
-          setSelectedMember("전체보기");
-        }}
+        onClick={() => dispatch(updateSelectedMember("전체보기"))}
       >
         전체보기
       </li>
       <li
         className={selectedMember === "쿠로미" ? "selected" : ""}
-        onClick={function () {
-          setSelectedMember("쿠로미");
-        }}
+        onClick={() => dispatch(updateSelectedMember("쿠로미"))}
       >
         쿠로미
       </li>
       <li
         className={selectedMember === "마이멜로디" ? "selected" : ""}
-        onClick={function () {
-          setSelectedMember("마이멜로디");
-        }}
+        onClick={() => dispatch(updateSelectedMember("마이멜로디"))}
       >
         마이멜로디
       </li>

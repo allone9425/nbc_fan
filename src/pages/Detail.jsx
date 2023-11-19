@@ -1,7 +1,9 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import backgroundImage from "../assets/detailbg.jpg";
-import { LettersContext } from "context/LettersContext";
+
+import { useDispatch, useSelector } from "react-redux";
+import { updateLetters } from "redux/reducers/letterReducer";
 import {
   DetailBox,
   BigBox,
@@ -14,13 +16,12 @@ import {
 } from "./Detail.style";
 
 function Detail() {
-  const { letters, setLetters } = useContext(LettersContext);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   //const location = useLocation();
   const params = useParams();
-  const foundData = letters.find((item) => {
-    return item.id === params.id;
-  });
+  const letters = useSelector((state) => state.letter.letters);
+  const foundData = letters.find((item) => item.id === params.id);
 
   //console.log("params", params);
   //console.log("found", foundData);
@@ -30,11 +31,12 @@ function Detail() {
     const alertDelete = window.confirm("정말 삭제할래요?");
     if (alertDelete) {
       // 선택된 아이템을 제외한 새로운 배열 생성
-      const newLetters = letters.filter((item) => item.id !== foundData.id);
+      const updatedLetters = letters.filter((item) => item.id !== foundData.id);
       // 메인 페이지로 가기
       navigate("/");
       // 상태 업데이트
-      setLetters(newLetters);
+      //setLetters(newLetters);
+      dispatch(updateLetters(updatedLetters));
     }
   };
 
@@ -59,10 +61,11 @@ function Detail() {
     if (editing === foundData.content) {
       alert("아무런 수정사항이 없어요!");
     } else {
-      const updateLetters = letters.map((item) =>
+      const updatedLetters = letters.map((item) =>
         item.id === foundData.id ? { ...item, content: editing } : item
       );
-      setLetters(updateLetters);
+      //setLetters(updateLetters);
+      dispatch(updateLetters(updatedLetters));
       //navigate("/");
       setEdit(false);
       setEditing("");
