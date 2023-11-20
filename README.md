@@ -24,7 +24,6 @@
 
 ## 사용 예시 데모 :
 
-<img src= "https://github.com/allone9425/nbc_fan/blob/main/demo.gif?raw=true" >
-
-클릭하면 유튜브로 갑니다! =>
-[![Video Label](http://img.youtube.com/vi/YeunVX7PiE4/0.jpg)](https://youtu.be/YeunVX7PiE4?si=Rs7yKjF1sxvRJK61)
+<p><img src= "https://github.com/allone9425/nbc_fan/blob/main/demo.gif?raw=true" ></p>
+<p>Gif 라서 화질이 깨집니다! 아래 썸네일을 클릭하시면 유튜브 동영상으로 이동합니다! </p>
+<p>[![Video Label](http://img.youtube.com/vi/YeunVX7PiE4/0.jpg)](https://youtu.be/YeunVX7PiE4?si=Rs7yKjF1sxvRJK61)</p>
