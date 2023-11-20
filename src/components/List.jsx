@@ -8,16 +8,6 @@ function List() {
     return state.letter.letters;
   });
   console.log(letters);
-  // 1. useSelector의 state는 이놈이다.
-  // {
-  //    letter: letterReducer,
-  //    selectMember: selectMemberReducer,
-  // }
-
-  // 2. useSelector의 state.letter는
-  // letterReducer
-
-  // 3. letters는 [~~, ~~~, ~~~]임
 
   const selectedMember = useSelector(
     (state) => state.selectMember.selectedMember
