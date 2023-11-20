@@ -16,14 +16,12 @@
 
 ## 화면 구성 :
 
-[Home 화면]
-![image](https://github.com/allone9425/nbc_fan/assets/143374855/53f7b497-dfc3-4dac-aee9-71d4b8d1dfb8)
+- [Home 화면]
+  ![image](https://github.com/allone9425/nbc_fan/assets/143374855/53f7b497-dfc3-4dac-aee9-71d4b8d1dfb8)
 
-[Detail 화면]
-![image](https://github.com/allone9425/nbc_fan/assets/143374855/49b1c91c-d724-44ce-bead-618c8b4338ee)
+- [Detail 화면]
+  ![image](https://github.com/allone9425/nbc_fan/assets/143374855/49b1c91c-d724-44ce-bead-618c8b4338ee)
 
 ## 사용 예시 데모 :
 
 [![Video Label](http://img.youtube.com/vi/YeunVX7PiE4/0.jpg)](https://youtu.be/YeunVX7PiE4?si=Rs7yKjF1sxvRJK61)
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/YeunVX7PiE4?si=pGfOkucGc8UaHRs2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
