@@ -40,9 +40,6 @@ const letterReducer = (state = initialState, action) => {
       };
     default:
       return state;
-    // return {
-    //   letters: [~~, ~~~, ~~~]
-    // }
   }
 };
 
