@@ -38,6 +38,10 @@ function Detail() {
       // 상태 업데이트
       //setLetters(newLetters);
       dispatch(updateLetters(updatedLetters));
+      // dispatch({
+      //   type: "letter/UPDATE_LETTERS",
+      //   payload: updatedLetters,
+      // })
     }
   };
 

@@ -1,5 +1,3 @@
-// letterReducer.js
-// letterReducer.js
 import data from "../../shared/data.json";
 import uuid from "react-uuid";
 
@@ -34,16 +32,17 @@ const letterReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_LETTER:
       return {
-        ...state,
         letters: [...state.letters, action.payload],
       };
     case UPDATE_LETTERS:
       return {
-        ...state,
         letters: action.payload,
       };
     default:
       return state;
+    // return {
+    //   letters: [~~, ~~~, ~~~]
+    // }
   }
 };
 

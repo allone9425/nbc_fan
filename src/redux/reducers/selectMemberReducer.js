@@ -1,4 +1,3 @@
-// selectMemberReducer.js
 // 액션 타입 정의
 const UPDATE_SELECTED_MEMBER = "selectMember/UPDATE_SELECTED_MEMBER";
 
@@ -18,11 +17,13 @@ const selectMemberReducer = (state = initialState, action) => {
   switch (action.type) {
     case UPDATE_SELECTED_MEMBER:
       return {
-        ...state,
         selectedMember: action.payload,
       };
     default:
       return state;
+    // {
+    //    selectedMember: "전체보기",
+    // };
   }
 };
 
