@@ -1,11 +1,3 @@
-기능구현 한 내용
-
-이 프로젝트에서 뭘 했는지
-
-프로젝트 개요
-
-구글링
-
 ## 프로젝트명 : 쿠로미 & 마이멜로디 아티스트 팬레터함
 
 ## 기간 : 2023. 11. 10 ~ 11. 20 (10일)
@@ -33,3 +25,5 @@
 ## 사용 예시 데모 :
 
 [![Video Label](http://img.youtube.com/vi/YeunVX7PiE4/0.jpg)](https://youtu.be/YeunVX7PiE4?si=Rs7yKjF1sxvRJK61)
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/YeunVX7PiE4?si=pGfOkucGc8UaHRs2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
