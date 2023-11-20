@@ -24,7 +24,7 @@
 
 ## 사용 예시 데모 :
 
-<img src= "https://github.com/allone9425/nbc_fan/blob/main/demo.gif" >
+<img src= "https://github.com/allone9425/nbc_fan/blob/main/demo.gif?raw=true" >
 
 클릭하면 유튜브로 갑니다! =>
 [![Video Label](http://img.youtube.com/vi/YeunVX7PiE4/0.jpg)](https://youtu.be/YeunVX7PiE4?si=Rs7yKjF1sxvRJK61)
