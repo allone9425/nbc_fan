@@ -7,7 +7,6 @@ function List() {
   const letters = useSelector((state) => {
     return state.letter.letters;
   });
-  console.log(letters);
 
   const selectedMember = useSelector(
     (state) => state.selectMember.selectedMember
